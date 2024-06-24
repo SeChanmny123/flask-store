@@ -1,0 +1,63 @@
+{% extends 'layout/master.html' %}
+{% block content %}
+<div class="col-6">
+    <div class="navbar navbar-dark bg-dark shadow-sm p-6 mb-10 rounded">
+        <div class="container-fluid justify-content-center">
+            <span class="navbar-brand mb-0 h1">Product Order</span>
+        </div>
+    </div>
+    <div class="container mt-4">
+        <table class="table table-bordered table-dark">
+            <thead class="table-secondary">
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td style="width: 350px">{{ product_detail.title }}</td>
+                <td>$ {{ product_detail.price }}</td>
+                <td>1</td>
+                <td>$ {{ product_detail.price }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="col-6">
+    <div class="navbar navbar-dark bg-dark shadow-sm p-6 mb-10 rounded">
+        <div class="container-fluid justify-content-center">
+            <span class="navbar-brand mb-0 h1">Customer Information</span>
+        </div>
+    </div>
+    <form class="container mt-4" method="post" action="/confirm_checkout">
+        <div class="mb-3">
+            <label for="name" class="form-label">Customer Name</label>
+            <input type="text" class="form-control" id="name" name="name">
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="text" class="form-control" id="phone" name="phone">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control" id="address" name="address">
+        </div>
+        <input type="hidden" id="product_id" name="id" value="{{ product_detail['id'] }}">
+        <div class="d-flex justify-content-between align-items-center container mt-4">
+            <a href="/products_detail?id={{ product_detail['id'] }}" class="btn btn-danger">Cancel</a>
+            <button class="btn btn-success" type="submit">Check Out</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
